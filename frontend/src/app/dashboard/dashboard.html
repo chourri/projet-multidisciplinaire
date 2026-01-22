@@ -1,0 +1,132 @@
+<div class="min-h-screen font-sans text-slate-700 bg-[url('/maroc.png')] bg-repeat bg-size-[400px_400px]">
+  
+  <div class="bg-white/95 min-h-screen backdrop-blur-[2px]">
+    
+    <app-header></app-header>
+
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+
+      <section class="w-full mb-10 shadow-lg border border-slate-200 rounded-sm overflow-hidden bg-white">
+        <div class="p-5">
+          <app-map-visualizer [weatherData]="weatherData()"></app-map-visualizer>
+        </div>
+      </section>
+
+      <section class="mb-10 shadow-md bg-white rounded-sm border border-slate-200">
+        <div class="p-4">
+          <app-alert-list [data]="weatherData()"></app-alert-list>
+        </div>
+      </section>
+
+      <section class="mb-10 shadow-md bg-white rounded-sm border border-slate-200">
+         <div class="bg-linear-to-r from-sky-900 to-sky-700 text-white px-5 py-2 font-bold text-sm tracking-wide flex items-center gap-2">
+          Maps and satellite imagery
+        </div>
+        <div class="p-4">
+          <app-image-slider></app-image-slider>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+        
+        <div class="lg:col-span-8 flex flex-col gap-6">
+          <div class="bg-white border border-slate-200 rounded-sm shadow-sm h-full">
+            
+            <div class="bg-linear-to-r from-sky-900 to-sky-700 text-white px-5 py-2 font-bold text-sm tracking-wide flex items-center gap-2">
+              <div class="flex items-center gap-2">
+                <span> SSSS News</span>
+              </div>
+            </div>
+            
+            <div class="divide-y divide-slate-100">
+              
+              @if (criticalAlert(); as alert) {
+                <div class="p-5 flex gap-5 hover:bg-red-50/30 transition group cursor-pointer">
+                  <div class="shrink-0 w-24 h-20 bg-red-100 flex flex-col items-center justify-center text-red-600 border border-red-200 rounded-sm">
+                    <span class="text-[10px] font-bold uppercase">Critical</span>
+                  </div>
+                  <div>
+                    <h5 class="text-md font-bold text-sky-900 group-hover:text-red-700 transition">{{ alert.message }}</h5>
+                    <p class="text-sm text-slate-600 mt-2 line-clamp-2">
+                      Automated detection via Neuro-Symbolic Engine. Temperature anomalies exceeding historical baseline by 3 standard deviations.
+                    </p>
+                    <div class="mt-2 text-xs text-slate-400 font-mono flex items-center gap-2">
+                       <span>DATE: {{ alert.date }}</span>
+                       <span>•</span>
+                       <span>SOURCE: AUTO-LSTM</span>
+                    </div>
+                  </div>
+                </div>
+              }
+
+              <div class="p-5 flex gap-5 hover:bg-sky-50/30 transition group cursor-pointer">
+                <div class="shrink-0 w-24 h-20 bg-sky-100 flex flex-col items-center justify-center text-sky-600 border border-sky-200 rounded-sm">
+                   <span class="text-[10px] font-bold uppercase">Hydrology</span>
+                </div>
+                <div>
+                  <h5 class="text-md font-bold text-sky-900 group-hover:text-sky-600 transition">Oum Er-Rbia Basin: Water Levels Normalize</h5>
+                  <p class="text-sm text-slate-600 mt-2 line-clamp-2">
+                    Recent precipitation events have restored dam levels to 45% capacity. Flash flood risk remains moderate for downstream valleys.
+                  </p>
+                  <div class="mt-2 text-xs text-slate-400 font-mono flex items-center gap-2">
+                    <span>DATE: 2026-01-28</span>
+                    <span>•</span>
+                    <span>SOURCE: ABHOER</span>
+                 </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-4 flex flex-col gap-6">
+          
+          <div class="bg-white border border-slate-200 p-6 rounded-sm shadow-sm relative overflow-hidden">
+            <h4 class="font-bold text-sky-900 text-lg mb-2 flex items-center gap-2">
+               Alert Subscription
+            </h4>
+            <p class="text-sm text-slate-600 mb-6">Get email notifications for heatwaves in your region.</p>
+            <div class="flex flex-col gap-3">
+              <input type="email" placeholder="name@organization.ma" class="w-full border border-slate-300 p-3 text-sm rounded-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+              <button class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 text-sm rounded-sm shadow-md transition transform active:scale-95">
+                SUBSCRIBE NOW
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-sm shadow-sm">
+            <div class="bg-sky-800 text-white px-4 py-2 font-bold text-sm rounded-t-sm flex items-center gap-2">
+              Resources
+            </div>
+            <div class="p-4">
+              <ul class="space-y-3 text-sm">
+                <li>
+                  <a href="#" class="flex items-center gap-3 text-slate-600 hover:text-sky-600 transition group">
+                    <span class="w-8 h-8 bg-slate-100 rounded flex items-center justify-center group-hover:bg-sky-100 text-xs font-bold text-slate-400">PDF</span>
+                    <span class="font-medium">Prediction Methodology</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="flex items-center gap-3 text-slate-600 hover:text-sky-600 transition group">
+                    <span class="w-8 h-8 bg-slate-100 rounded flex items-center justify-center group-hover:bg-sky-100 text-xs font-bold text-slate-400">CSV</span>
+                    <span class="font-medium">Raw Dataset (2024-2025)</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <footer class="border-t border-slate-300 py-10 text-center bg-slate-50">
+        <p class="text-xs text-slate-500 font-medium">
+          &copy; 2026 Climate Extreme Event Prediction System (CEEPS)<br>
+          University Sultan My Slimane • ENSA Khouribga
+        </p>
+      </footer>
+
+    </div>
+  </div>
+</div>
