@@ -138,5 +138,7 @@ predictions = scaler.inverse_transform(pred_full)[:, :len(features)]
 df_2026 = pd.DataFrame(predictions, columns=features)
 df_2026.insert(0, 'date', future_dates)
 
-df_2026.to_csv("weather_2026_predicted.csv", index=False)
-print("✅ Prédictions 2026 réalistes générées")
+# Sauvegarde en JSON lisible
+df_2026.to_json("weather_2026_predicted.json", orient='records', date_format='iso', force_ascii=False)
+
+print("✅ Prédictions 2026 réalistes générées en JSON")
