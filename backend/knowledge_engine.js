@@ -5,8 +5,8 @@ const RULES = {
     TEMP_HIGH: 38.0,
     HUMIDITY_DANGER: 20.0,
 
-    // NEW: Wind Rules (km/h)
-    WIND_GALE: 60.0,    // Level: HIGH
+    // Wind Rules (km/h)
+   // Level: HIGH
     WIND_STORM: 85.0    // Level: CRITICAL
 };
 
